@@ -14,22 +14,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Step 1: Copy the repository code onto the runner machine
-    - name: Checkout Code
-      uses: actions/checkout@v4
+  # Step 1: Copy the repository code onto the runner machine
+  - name: Checkout Code
+    uses: actions/checkout@v4
 
-    # Step 2: Set up the specific version of Node.js
-    - name: Setup Node.js
-      - uses: actions/checkout@v4
+  # Step 2: Set up the specific version of Node.js
+  - name: Setup Node.js
+    uses: actions/setup-node@v5
+    with:
+      node-version: 22
+      cache: npm
 
-- uses: actions/setup-node@v5
-  with:
-    node-version: 22
-    cache: npm
-
-- run: npm ci
-- run: npm test
-
+  - run: npm ci
+  - run: npm test
     # Step 3: Clean install your project dependencies (Jest)
     - name: Install Dependencies
       run: npm ci
